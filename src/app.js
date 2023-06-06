@@ -105,7 +105,7 @@ app.use(errorHandler)
 
 
 const messages =[]
-mongoose.set('strictQuery', false)
+//mongoose.set('strictQuery', false)
 mongoose.connect(process.env.MONGO_URL, error => {
     if (error) {
         
