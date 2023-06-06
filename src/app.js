@@ -66,9 +66,9 @@ app.use('/public/images', express.static('images'))
 app.engine('handlebars', handlebars.engine())
 app.set('views', __dirname + '/views')
 app.set('view engine', 'handlebars')
-app.use(session({
-  secret: "CoderSecrets"
-}))
+//app.use(session({
+  //secret: "CoderSecrets"
+//}))
 initializatePassport()
 app.use(passport.initialize())
 app.use(passport.session())
