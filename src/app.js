@@ -114,7 +114,7 @@ mongoose.connect(process.env.MONGO_URL, error => {
     
 
     // Corriendo el servidor
-    const server = app.listen(8080, () => console.log("listening..."))
+    const server = app.listen(8080, () => console.log("listening...", process.env.PORT))
     const io = new Server(server)
     io.on('connection', socket => {
         
