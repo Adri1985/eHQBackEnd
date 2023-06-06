@@ -34,7 +34,8 @@
     "winston": "^3.8.2"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
   },
   "name": "exrpess",
   "version": "1.0.0",

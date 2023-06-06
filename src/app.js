@@ -50,6 +50,7 @@ const swaggerOptions = {
 
 const specs = swaggerJSDoc(swaggerOptions)
 const app = express()
+const PORT = process.env.PORT||8080;
 const URI = "mongodb+srv://ecommerce_main:ehq@ecommerce.iv6wj6x.mongodb.net"
 const DB_NAME = 'test'
 
@@ -105,7 +106,7 @@ app.use(errorHandler)
 
 const messages =[]
 mongoose.set('strictQuery', false)
-mongoose.connect(URI, {dbName: DB_NAME}, error => {
+mongoose.connect(process.env.MONGO_URL, error => {
     if (error) {
         
         return
