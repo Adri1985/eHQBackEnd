@@ -22,7 +22,7 @@ router.get('/register', (req,res)=>{
 router.post('/register', passport.authenticate('register', { failureRedirect: '/session/failregister' }), async (req, res) => {
     
     
-    res.json('/session/login')
+    res.send({message: "registered in successfully"})
 })
 
 // Vista de login
