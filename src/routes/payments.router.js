@@ -8,10 +8,10 @@ const router = Router()
 const orderService = new Order();
 
 router.post('/', async(req,res)=>{
-    console.log("id del order", req.query.id)
+    console.log("amount del orden", req.query.id)
     //const order = orderService.getOneByID(parseInt(req.query.id))
     const paymentIntentInfo = {
-        amount: 100,
+        amount: parseInt(req.query.id),
         currency:'usd'
     }
    
