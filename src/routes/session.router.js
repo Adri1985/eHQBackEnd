@@ -44,7 +44,9 @@ router.post('/login', passport.authenticate('login'), async(req,res)=>{
         return res.status(400).send({status: 'error', error:'Invalid Credentials'})
     }
     const token = generateToken(req.user)  
-    console.log("Token", token)  
+    console.log("Token", token) 
+    req.session.user = req.user 
+    console.log("req.session.user ", req.session.user)
     
     res.send({message: "Logged in successfully", token: token, user: req.user})
     //res.json(req.user)

@@ -23,7 +23,8 @@ export const getOne = async(req,res)=>{
 }
 
 export const createOne = async(req,res) =>{
-    const product = req.body.formData
+    console.log("entra ")
+    const product = req.body
     
     if(!product.modelo){
         CustomError.createError({
@@ -33,7 +34,9 @@ export const createOne = async(req,res) =>{
             code: EErors.INVALID_TYPES_ERROR
         })
     }
+    product.imageName = req.file.path
     const result = await productManager.createOne(product)
+    console.log("result de create product", result)
     res.json(result)
 }
 
