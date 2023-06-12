@@ -8,7 +8,7 @@ const router = Router()
 const orderService = new Order();
 
 router.post('/', async(req,res)=>{
-    console.log("amount del orden", req.query.id)
+    
     //const order = orderService.getOneByID(parseInt(req.query.id))
     const paymentIntentInfo = {
         amount: parseInt(req.query.id),
@@ -18,9 +18,9 @@ router.post('/', async(req,res)=>{
     const service = new PaymentService()
     const result = await service.createPaymentIntent(paymentIntentInfo)
    
-        console.log("error")
+        
      
-    //console.log(result)
+    //
     res.send({status: 'success', payload: result})
 })
 

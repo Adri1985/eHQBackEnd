@@ -38,15 +38,15 @@ router.get('/login', (req, res)=>{
 //API para login usando estrategia JWT. Devuelve el token generado a traves de la cookie especificada en JWT_COOKIE_NAME
 router.post('/login', passport.authenticate('login'), async(req,res)=>{
     
-    console.log("entra al login", req.user)
+    
     
     if(!req.user) {
         return res.status(400).send({status: 'error', error:'Invalid Credentials'})
     }
     const token = generateToken(req.user)  
-    console.log("Token", token) 
+    
     req.session.user = req.user 
-    console.log("req.session.user ", req.session.user)
+    
     
     res.send({message: "Logged in successfully", token: token, user: req.user})
     //res.json(req.user)
@@ -56,14 +56,14 @@ router.post('/login', passport.authenticate('login'), async(req,res)=>{
 // API para generar link de recuperacion de contrasena
 
 router.post('/recover', async(req,res)=>{
-    console.log("recover", req.body)
+    
     if(!req.body.email){
         return res.status(400).send({status: 'error', error:'Invalid Credentials'})
     }
 
     const token = generateToken(req.body.email)
-    console.log(token)
-    console.log(req.user)
+    
+    
     res.send({token: token})
 })
 
@@ -71,7 +71,7 @@ router.post('/recover', async(req,res)=>{
 
 router.post('/passwordchange/:token',(req,res)=>{
     const {token} = req.params
-    console.log('token', token)
+    
     
 })
 

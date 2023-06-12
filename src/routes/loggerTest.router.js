@@ -9,7 +9,7 @@ router.use(addLogger)
 
 router.get('/', (req,res)=>{
     try{
-        console.log('loggertest')
+        
         req.logger.fatal('Advertencia !!')
         req.logger.warning('Warninng')
         req.logger.info('Info')
@@ -17,7 +17,7 @@ router.get('/', (req,res)=>{
         res.send({"result":"Logger tested"})
     }
     catch(e){
-        console.log(e)
+        
     }
 
 })

@@ -42,7 +42,7 @@ export const createOrder = async (req, res) => {
   // "products": [{"_id":"641dec1d396d5837a95ba21b","quantity":3,
   // "precio":100}]}
 
-  console.log("BODY", req.body.orden);
+  
   const { user: uid, store: sid, products } = req.body.orden;
   const user = await userService.getOneByID(uid);
   const store = await storeService.getOneByID(sid);
@@ -52,24 +52,24 @@ export const createOrder = async (req, res) => {
   let productAux = {};
   let returnCartProducts = [];
   //const return
-  console.log("products de body", products);
+  
 
   for (let i = 0; i < products.length; i++) {
     let productStore = store.products.find(
       (prod) => prod.product.toString() == products[i]._id
     );
-    console.log("productStore", productStore);
+    
     if (productStore) {
       // encontro el producto en stock
       if (productStore.quantity >= products[i].quantity) {
-        console.log("hay stock");
+        
         productStore.quantity -= products[i].quantity;
         suma += products[i].precio * products[i].quantity;
-        console.log("product en i", products[i]);
+        
         finalOrder.push(products[i]);
-        console.log("final order dentro del loop", finalOrder);
+        
       } else {
-        console.log("no hay stock", productStore);
+        
         //no alcanza pero genera la orden con lo que hay
         returnCartProducts.push({
           product: products[i]._id,
@@ -99,21 +99,21 @@ export const createOrder = async (req, res) => {
     totalPrice: suma,
   };
 
-  console.log("order", order);
+  
   const result = await orderService.create(order);
-  console.log("result", result._id);
-  console.log("user", user);
+  
+  
   user.orders.push(result._id);
-  console.log("user", user);
+  
   await userService.updateUser(user._id, user.orders);
 
   await storeService.updateStore(store._id, store);
 
   cartService.updateOne(user.cart, { products: returnCartProducts });
 
-  console.log("store after", store);
+  
 
-  console.log("cart user", user.cart);
+  
 
   sendmail(result._id, order, user)
 

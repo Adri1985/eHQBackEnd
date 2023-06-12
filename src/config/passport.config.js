@@ -26,7 +26,7 @@ const initializatePassport = ()=>{
             
             let user = await UserService.getOneByEmail(username)
 
-            console.log("user timestamp", user)
+            
             if(!user) {
                 
                 return done(null, user)
@@ -39,11 +39,11 @@ const initializatePassport = ()=>{
             
             //req.user = user
            let result = await UserService.updateLastConnection(user._id)
-           console.log("result last login", result)
+           
             return done(null, user)
         }
         catch(error){
-            console.log('error', error)
+            
         }
 
     }
@@ -64,7 +64,7 @@ const initializatePassport = ()=>{
                 
                 return done(null, false)
             }
-            console.log("Crea user")
+            
 
             const newUser = {
                 first_name,
@@ -74,9 +74,9 @@ const initializatePassport = ()=>{
                 password: createHash(password),
                 role
             }
-            console.log("antes de creater user service")
+            
             const result = await UserService.create(newUser)
-            console.log("despues de create user service", result)
+            
             return done(null, result)
         } catch (error) {
             return done("[LOCAL] Error al obtener user " + error)

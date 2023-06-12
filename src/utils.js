@@ -43,11 +43,11 @@ export const authToken = (req,res,next) => {
 }
 
 export const validateRole = role => (req,res, next) =>{
-    console.log("entra en validate role")
+    
     //return next()
 
-    console.log("user role en validate role", req.user)
-    console.log("user session  en validate role", req.session.user)
+    
+    
     //if(req.user.user.role === role)return next()
     return next
     //return res.status(403).send({error: 'Only Admin role can create products'})

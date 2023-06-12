@@ -47,10 +47,10 @@ export const addProductToCart = async(req,res)=>{
 }
 
 export const deleteProductFromCart = async(req,res)=>{
-    console.log("delete product from cart")
+    
     const cid = req.params.cid
     const pid = req.params.pid
-    console.log(`CID ${cid} PID ${pid}`)
+    
     const result = await cartManager.deleteProdFromCart(cid, pid)
     res.json(result)
 }

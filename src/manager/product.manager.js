@@ -61,9 +61,9 @@ class ProductManager{
         //this.findProductAndDeleteFromCarts(pid)
         const orders = await this.findOrdersWithProduct(pid)
         const usersToNotify = await this.findUsersWithOrders(orders)
-        console.log("users to notify", usersToNotify)
+        
         await this.sendEmailToUsers(usersToNotify,pid)
-        console.log("orders", orders)
+        
 
         //const result = await ProductService.deleteOne(pid)
         const result =[]
@@ -91,8 +91,8 @@ class ProductManager{
     findOrdersWithProduct= async(productID) =>{
         const orders = await orderService.get()
         const ordersUpdated = []
-        console.log("orders", orders)
-        console.log("")
+        
+        
         for (const order of orders){
             if(order.products.find(el=> el._id == productID )){
                 const newProducts = order.products.filter(el=> el._id != productID)
@@ -108,12 +108,12 @@ class ProductManager{
 
     findUsersWithOrders = async(orders) =>{
         const users = await userService.get()
-        //console.log("users", users)
+        //
         const usersToNotify =[]
         for ( let i = 0; i< users.length; i++){
             for (let j = 0; j< orders.length; j++){
-                console.log("user orders",users[i].orders)
-                console.log("order en j", orders[j])
+                
+                
                 if(users[i].orders.find(el => el = orders[j])){
                     usersToNotify.push(users[i])
                 }
@@ -124,7 +124,7 @@ class ProductManager{
 
     sendEmailToUsers = async(users, pid)=>{
         for(let i = 0; i<users.length; i++){
-            console.log("user each ", users[i])
+            
             await this.sendmail(users[i], pid)
     }
 
@@ -132,7 +132,7 @@ class ProductManager{
     
 
     sendmail = async (user,pid) => {
-        console.log("user received", user)
+        
         const result = await transport.sendMail({
           from:'electrichqargentina@gmail.com',
           to:user.email,

@@ -44,25 +44,25 @@ export const createUser = async(req,res)=>{
 export const updateUserPremium = async(req,res)=>{
     const {uid} = req.params
     const updData = req.body
-    console.log("file", req.file)
-    console.log("body", req.body)
+    
+    
 
-    console.log("uid", uid)
-    console.log("updData", updData)
+    
+    
     updData.avatar = req.file.path
     const result = await userService.updateUserPremium(uid,updData)
-    console.log("upd data", updData)
+    
     if (!result) return res.status(500).send({status:'error', error:'error updating user'})
     res.send(result)
     
 }
 
 export const deleteInactiveUsers = async(req,res)=>{
-    console.log(req.file,req.body,16)
+    
     const {minutes} = req.params
-    console.log("minutes", minutes)
+    
     const result = await userService.deleteInactiveUsers(minutes)
-    console.log("result", result)
+    
     if (!result) return res.status(500).send({status:'error', error:'error updating user'})
     res.send(result)
 

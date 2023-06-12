@@ -10,14 +10,14 @@ export const getStores = async(req,res)=>{
 }
 
 export const getStoreProducts = async(req,res)=>{
-    console.log("entra")
+    
     const result = await storeService.get()
     const storeProducts = result[0]
     const products =[]
     for (let i=0;i<storeProducts.products.length; i++){
-        console.log("storeProduct",storeProducts.products[i])
+        
         storeProducts.products[i].product.stock = storeProducts.products[i].quantity
-        console.log(storeProducts.products[i].quantity)
+        
         products.push(storeProducts.products[i].product)
 
     }

@@ -23,7 +23,7 @@ export const getOne = async(req,res)=>{
 }
 
 export const createOne = async(req,res) =>{
-    console.log("entra ")
+    
     const product = req.body
     
     if(!product.modelo){
@@ -36,7 +36,7 @@ export const createOne = async(req,res) =>{
     }
     product.imageName = req.file.path
     const result = await productManager.createOne(product)
-    console.log("result de create product", result)
+    
     res.json(result)
 }
 
@@ -48,7 +48,7 @@ export const updateOne= async(req,res)=>{
 }
 
 export const deleteOne = async(req,res) =>{
-    console.log("entra")
+    
     const id = req.params.id
     const result = await productManager.deleteOne(id)
     res.json({status:"success", payload: result})
