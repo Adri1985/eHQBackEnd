@@ -1,5 +1,8 @@
 import User from '../DAO/mongo/users.mongo.js'
 
+import userDTO from '../DAO/DTO/users.dto.js'
+
+
 const userService = new User()
 
 export const getUsers = async(req,res)=>{
@@ -15,6 +18,16 @@ export const getUserByID = async(req,res)=>{
     if (!result) return res.status(500).send({status:'error', error:'error getting user'})
     
     res.json({status:"succes", result})
+}
+
+export const getUserDTO = async()=>{
+    const {uid} = req.params
+
+    const result = await userService.getOneByID(uid)
+    if (!result) return res.status(500).send({status:'error', error:'error getting user'})
+    
+    userDTO = new UserDTO(result)
+    res.json({status:"succes", userDTO})
 }
 
 export const createUser = async(req,res)=>{
