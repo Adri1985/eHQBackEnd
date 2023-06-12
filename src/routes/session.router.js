@@ -46,6 +46,9 @@ router.post('/login', passport.authenticate('login'), async(req,res)=>{
     const token = generateToken(req.user)  
     
     req.session.user = req.user 
+
+    const userDTO = new User()
+    await userDTO.updateLastConnection(req.user._id)
     
     
     res.send({message: "Logged in successfully", token: token, user: req.user})
